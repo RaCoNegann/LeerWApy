@@ -20,7 +20,7 @@ def verify_webhook():
     else:
         abort(403)
 
-@app.route('/', methods=['POST'])
+@app.route('handle_webhook/', methods=['POST'])
 def handle_webhook():
     if request.method == 'POST':
         try:
