@@ -20,12 +20,22 @@ def verify_webhook():
     else:
         abort(403)
 
-@app.route('/', methods=['POST'],webhook())
-def webhook():
-    timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
-    print(f"\n\nWebhook received {timestamp}\n")
-    print(json.dumps(request.json, indent=2))
-    return '', 200
+@app.route('/', methods=['POST'])
+def handle_webhook():
+    if request.method == 'POST':
+        try:
+            data = request.get_json()
+            if data:
+                print("Received webhook data:")
+                print(jsonify(data).get_data(as_text=True))
+                # Process the webhook data here (e.g., save to database, trigger other actions)
+                return jsonify({"status": "success", "message": "Webhook received"}), 200
+            else:
+                return jsonify({"status": "error", "message": "No JSON data received"}), 400
+        except Exception as e:
+            return jsonify({"status": "error", "message": f"Error processing webhook: {e}"}), 500
+    else:
+        return jsonify({"status": "error", "message": "Method not allowed"}), 405
 
 if __name__ == '__main__':
     print(f"\nListening on port {port}\n")
