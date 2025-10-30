@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-port = int(os.getenv('PORT', 3000))
+port = int(os.getenv('PORT', 10000))
 verify_token = os.getenv('VERIFY_TOKEN')
 
 @app.route('/', methods=['GET'])
