@@ -20,7 +20,7 @@ def verify_webhook():
     else:
         abort(403)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST'],webhook())
 def webhook():
     timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
     print(f"\n\nWebhook received {timestamp}\n")
