@@ -5,7 +5,7 @@ import json
 
 app = Flask(__name__)
 
-port = int(os.getenv('PORT', 10000))
+port = int(os.getenv('PORT', 10000))#No se seguro si era necesario
 verify_token = os.getenv('VERIFY_TOKEN')
 
 @app.route('/', methods=['GET'])
@@ -20,7 +20,7 @@ def verify_webhook():
     else:
         abort(403)
 
-@app.route('handle_webhook/', methods=['POST'])
+@app.route('/handle_webhook', methods=['POST'])
 def handle_webhook():
     if request.method == 'POST':
         try:
