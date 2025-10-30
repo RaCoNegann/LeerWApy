@@ -21,9 +21,15 @@ def verify_webhook():
         abort(403)
 
 @app.route('/handle_webhook', methods=['POST'])
+print("Sera")
+print(request.get_json())
 def handle_webhook():
+    print("SeraFunc")
+    print(request.get_json())
     if request.method == 'POST':
         try:
+            print("SeraFunc")
+            print(request.get_json())
             data = request.get_json()
             if data:
                 print("Received webhook data:")
