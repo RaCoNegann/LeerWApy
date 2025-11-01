@@ -2,7 +2,7 @@ from flask import Flask, request, abort
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     if request.method == 'POST':
         print(request.json)
@@ -10,5 +10,5 @@ def webhook():
     else:
         abort(400)
 
-if __name__ == '--main__':
-    app.rin()
+if __name__ == '__main__':
+    app.run()
