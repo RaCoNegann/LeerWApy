@@ -28,7 +28,7 @@ def webhook():
         print("Received webhook data:", data)
 
         # Process the data (e.g., store in a database, send notifications)
-        rl = "https://graph.facebook.com/v22.0/845427305315318/messages"
+        url = "https://graph.facebook.com/v22.0/845427305315318/messages"
         headers = {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer EAFahY2vnTjUBP9LO96F0UYZCZCY0uCjZALa0cZBbLFiyAHsxuahw40ZCMZBYoB6t26WDA2PZCLoUASJcX1DpG7k8B0OLC1f94GfIj0qSBtiUwWO0q66GJZAPfrTVKE0ohkZA9UWvwPC6POccHthgbEpxWyPDrVnWxU1WRJb2oLwmHZB8pYHemMtbeZAVWGBaKOaiOKoYV1lQK9YfrcDwg0KMrKVZBYy1EwkZBFGumzpxjIl5iLWkkrdoibNHjU8Btp838sKx2pZAKFjSUGqEuUpjrkvRV4'
