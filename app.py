@@ -2,26 +2,34 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
-def handle_webhook():
-    if request.method == 'POST':
-        try:
-            # Get the JSON data from the request body
-            #data = request.get_json()
-            if data is None:
-                return jsonify({"message": "Invalid JSON payload"}), 400
+# Replace with your actual verify token - tal vez esto se puede hacer mejor  como en el .js
+VERIFY_TOKEN = "tokenenrender" 
 
-            #print(f"Received webhook payload: {data}")
-            print(request.json)
-            # Process the webhook data here
-            return jsonify({"message": "Webhook received successfully"}), 200
+@app.route("/", methods=["GET", "POST"])
+def webhook():
+    if request.method == "GET":
+        # Handle webhook verification
+        mode = request.args.get("hub.mode")
+        token = request.args.get("hub.verify_token")
+        challenge = request.args.get("hub.challenge")
 
-        except Exception as e:
-            print(f"Error processing webhook: {e}")
-            return jsonify({"message": f"Error processing webhook: {e}"}), 500
-    else:
-        return jsonify({"message": "Method not allowed"}), 405
+        if mode and token and mode == "subscribe" and token == VERIFY_TOKEN:
+            print("WEBHOOK_VERIFIED")
+            return challenge, 200
+        else:
+            print("VERIFICATION_FAILED")
+            return jsonify({"status": "error", "message": "Verification failed"}), 403
 
-if __name__ == '__main__':
-    # Run the Flask app on a specific port (e.g., 5000)
+    elif request.method == "POST":
+        # Handle incoming event notifications
+        data = request.json
+        print("Received webhook data:", data)
+
+        # Process the data (e.g., store in a database, send notifications)
+        # ...
+
+        return jsonify({"status": "EVENT_RECEIVED"}), 200
+
+if __name__ == "__main__":
+    #app.run(debug=True, port=5000) # Run on port 5000 for local testing - Geneta como un timeout*
     app.run(host='0.0.0.0', port=5000)
