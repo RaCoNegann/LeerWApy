@@ -14,6 +14,8 @@ def webhook():
         mode = request.args.get("hub.mode")
         token = request.args.get("hub.verify_token")
         challenge = request.args.get("hub.challenge")
+        with open("sample.txt", "w") as f:
+            f.write("This is line 1.\n")
 
         if mode and token and mode == "subscribe" and token == VERIFY_TOKEN:
             print("WEBHOOK_VERIFIED")
