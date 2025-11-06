@@ -37,7 +37,7 @@ def webhook():
         data = request.json
         print("Received webhook data:", data)
         
-        logger.info(data)
+        logger.warning(data)
         texto = (data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"])
 
         url = "https://graph.facebook.com/v22.0/845427305315318/messages"
@@ -58,6 +58,7 @@ def webhook():
                     }
                 }
             })
+            logger.error('Entro en el if del texto')
         else:
             payload = json.dumps({
                 "messaging_product": "whatsapp",
@@ -69,8 +70,10 @@ def webhook():
                     "body": "text-message-content"
                 }
             })
-            response = requests.request("POST", url, headers=headers, data=payload)
-            return jsonify({"status": "EVENT_RECEIVED"}), 200
+            logger.critical('Entro en else del texto')
+        response = requests.request("POST", url, headers=headers, data=payload)
+        logger.info('Deberia enviar')
+        return jsonify({"status": "EVENT_RECEIVED"}), 200
 
 if __name__ == "__main__":
     #app.run(debug=True, port=5000) # Run on port 5000 for local testing - Geneta como un timeout*
