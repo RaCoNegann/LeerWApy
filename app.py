@@ -2,11 +2,15 @@ from flask import Flask, request, jsonify
 #import js2py
 #import requests
 #import json
+import logging
 
 app = Flask(__name__)
-
+# Obtener el logger
+logger = logging.getLogger(__name__)
 # Replace with your actual verify token - tal vez esto se puede hacer mejor  como en el .js
-VERIFY_TOKEN = "tokenenrender" 
+VERIFY_TOKEN = "tokenenrender"
+# Configurar el logger
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 @app.route("/", methods=["GET", "POST"])
 def webhook():
@@ -17,7 +21,14 @@ def webhook():
         challenge = request.args.get("hub.challenge")
         #with open("sample.txt", "w") as f:#Crei que crearia un archivo en elgithub
             #f.write("This is line 1.\n")
-
+        # Registrar mensajes
+        
+        logger.debug('Este es un mensaje de depuración')
+        logger.info('El programa ha comenzado con éxito')
+        logger.warning('Se ha detectado una configuración no óptima')
+        logger.error('Se ha producido un error al procesar los datos')
+        logger.critical('El sistema ha fallado críticamente')
+        
         if mode and token and mode == "subscribe" and token == VERIFY_TOKEN:
             #js_code_string = "console.log('aaaaaaaabb');"
             #result = js2py.eval_js(js_code_string)
