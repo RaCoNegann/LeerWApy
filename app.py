@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import js2py
+#import js2py
 #import requests
 #import json
 
@@ -19,8 +19,8 @@ def webhook():
             #f.write("This is line 1.\n")
 
         if mode and token and mode == "subscribe" and token == VERIFY_TOKEN:
-            js_code_string = "console.log('aaaaaaaabb');"
-            result = js2py.eval_js(js_code_string)
+            #js_code_string = "console.log('aaaaaaaabb');"
+            #result = js2py.eval_js(js_code_string)
             
             print("WEBHOOK_VERIFIED")
             return challenge, 200
