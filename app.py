@@ -49,7 +49,7 @@ def webhook():
             payload = json.dumps({
                 "messaging_product": "whatsapp",
                 #"to": "573202965268",
-                "to": "573202965268",
+                "to": "573057781203",
                 "type": "template",
                 "template": {
                     "name": "hello_world",
@@ -63,7 +63,7 @@ def webhook():
             payload = json.dumps({
                 "messaging_product": "whatsapp",
                 "recipient_type": "individual",
-                "to": "573202965268",
+                "to": "573057781203",
                 "type": "text",
                 "text": {
                     "preview_url": False,
