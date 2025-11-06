@@ -42,6 +42,7 @@ def webhook():
     elif request.method == "POST":
         # Handle incoming event notifications
         data = request.json
+        logger.info(data)
         print("Received webhook data:", data)
 
         # Process the data (e.g., store in a database, send notifications)
