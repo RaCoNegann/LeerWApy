@@ -42,8 +42,10 @@ def webhook():
     elif request.method == "POST":
         # Handle incoming event notifications
         data = request.json
-        logger.info(data)
         print("Received webhook data:", data)
+        
+        logger.info(data)
+        logger.warning(data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"])
 
         # Process the data (e.g., store in a database, send notifications)
         #url = "https://graph.facebook.com/v22.0/845427305315318/messages"
