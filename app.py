@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify, js2py
+from flask import Flask, request, jsonify
+import js2py
 #import requests
 #import json
 
