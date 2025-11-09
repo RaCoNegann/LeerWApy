@@ -35,7 +35,7 @@ def webhook():
         # Handle incoming event notifications
         data = request.json
         #print("Received webhook data:", data)
-        logger.warning('Received webhook data: '+data)
+        logger.warning('data)
         texto = (data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"])
         numeroUsuario= data["entry"][0]["changes"][0]["value"]["messages"][0]["from"]
         enviar_mensaje(texto,numeroUsuario)
