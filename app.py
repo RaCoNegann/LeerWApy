@@ -28,14 +28,14 @@ def webhook():
             return challenge, 200
         else:
             #print("VERIFICATION_FAILED")
-            logger.error('ERIFICATION_FAILED')
+            logger.error('VERIFICATION_FAILED')
             return jsonify({"status": "error", "message": "Verification failed"}), 403
 
     elif request.method == "POST":
         # Handle incoming event notifications
         data = request.json
         #print("Received webhook data:", data)
-        logger.warning('data)
+        logger.warning(data)
         texto = (data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"])
         numeroUsuario= data["entry"][0]["changes"][0]["value"]["messages"][0]["from"]
         enviar_mensaje(texto,numeroUsuario)
