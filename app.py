@@ -47,7 +47,7 @@ def enviar_mensaje(f_texto,f_cel):
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
-            tokenApiWA = tokenApiWA[:-2]#Para quitar el \n que toma al leer el token
+            tokenApiWA = tokenApiWA[:-2]
             #print(type(tokenApiWA))
         finally:
             archivo.close()
