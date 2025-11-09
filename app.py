@@ -36,14 +36,10 @@ def webhook():
         data = request.json
         #print("Received webhook data:", data)
         logger.warning(data)
-        try:
-            texto = (data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"])
-            numeroUsuario= data["entry"][0]["changes"][0]["value"]["messages"][0]["from"]
-            enviar_mensaje(texto,numeroUsuario)
-            logger.info('Deberia enviar')
-        except:
-            logger.warning('No es mensaje del usaurio')
-        
+        texto = (data["entry"][0]["changes"][0]["value"]["messages"][0]["text"]["body"])
+        numeroUsuario= data["entry"][0]["changes"][0]["value"]["messages"][0]["from"]
+        enviar_mensaje(texto,numeroUsuario)
+        logger.info('Deberia enviar')
         return jsonify({"status": "EVENT_RECEIVED"}), 200
     
 def enviar_mensaje(f_texto,f_cel):
