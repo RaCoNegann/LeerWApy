@@ -43,7 +43,7 @@ def webhook():
         return jsonify({"status": "EVENT_RECEIVED"}), 200
 
 def enviar_mensaje(f_texto,f_cel):
-    url = "https://graph.facebook.com/v22.0/845427305315318/messages"
+    url = "https://graph.facebook.com/v24.0/845427305315318/messages"
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
