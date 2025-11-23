@@ -1,11 +1,13 @@
 import requests
+import logging
 
 def enviar_mensaje(payload):
+    logger = logging.getLogger(__name__)
     url = "https://graph.facebook.com/v22.0/845427305315318/messages"
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
-            #print((tokenApiWA))
+            logger.info(tokenApiWA + " - token")
         finally:
             archivo.close()
     headers = {
