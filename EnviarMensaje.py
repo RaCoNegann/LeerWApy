@@ -1,0 +1,17 @@
+import requests
+
+def enviar_mensaje(payload):
+    url = "https://graph.facebook.com/v22.0/845427305315318/messages"
+    with open('tokenAPIWA.txt', 'r') as archivo:
+        try:
+            tokenApiWA = archivo.read()
+            #print((tokenApiWA))
+        finally:
+            archivo.close()
+    headers = {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer '+tokenApiWA
+    }
+    response = requests.request("POST", url, headers=headers, data=payload)
+    del tokenApiWA
+    print(response.text)
