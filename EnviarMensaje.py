@@ -13,7 +13,7 @@ def enviar_mensaje(payload):
             archivo.close()
     headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer '+tokenApiWA2
+    'Authorization': 'Bearer '+tokenApiWA
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     del tokenApiWA
