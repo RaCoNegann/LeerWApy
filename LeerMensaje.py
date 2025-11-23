@@ -13,7 +13,7 @@ def validar_mensaje(texto,numeroUsuario):
                 "code": "en_US"
             }
         })
-    elif "oli" in texto or "oli" in texto:
+    elif "oli" in texto or "Oli" in texto:
         recipient_type = "individual"
         typeAPIWA ="text"
         typeJSONAPIWA = json.dumps({
