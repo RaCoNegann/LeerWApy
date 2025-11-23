@@ -7,13 +7,14 @@ def enviar_mensaje(payload):
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
-            logger.info(tokenApiWA + " - to\nken")
+            tokenApiWA2 = tokenApiWA[:-2]
+            logger.info(tokenApiWA2 + " - to\nken")
         finally:
             archivo.close()
     headers = {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer '+tokenApiWA
+    'Authorization': 'Bearer '+tokenApiWA2
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     del tokenApiWA
-    print(response.text)
+    logger.warning(response.text)
