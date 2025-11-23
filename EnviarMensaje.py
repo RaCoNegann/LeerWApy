@@ -7,8 +7,8 @@ def enviar_mensaje(payload):
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
-            tokenApiWA2 = tokenApiWA[:-2]
-            logger.info(tokenApiWA2 + " - to\nken")
+            tokenApiWA = tokenApiWA[:-1]
+            logger.info(tokenApiWA + " - to\nken")
         finally:
             archivo.close()
     headers = {
