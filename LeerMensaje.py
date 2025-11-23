@@ -1,7 +1,10 @@
 import json
 import EnviarMensaje
+import logging
 
 def validar_mensaje(texto,numeroUsuario):
+    logger = logging.getLogger(__name__)
+    logger.info("Entra funcion")
     if texto == "this is a text message":
         typeAPIWA ="template"
         typeJSONAPIWA = json.dumps({
@@ -24,6 +27,7 @@ def validar_mensaje(texto,numeroUsuario):
             "preview_url": False,
             "body": "text-message-content\nSaltoLinea"
         })
+        logger.info("Valida mensaje")
 
     if 'recipient_type' in locals():
         payload = json.dumps({
