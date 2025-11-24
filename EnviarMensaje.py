@@ -21,6 +21,7 @@ def enviar_mensaje(payload):
     logger.warning(response.text)
 
 def enviar_imagen(numeroUsuario):
+    logger = logging.getLogger(__name__)
     url = "https://graph.facebook.com/v22.0/845427305315318/media"
     payload = {'messaging_product': 'whatsapp'}
     files=[
@@ -38,6 +39,7 @@ def enviar_imagen(numeroUsuario):
     }
     response = requests.request("POST", url, headers=headers, data=payload, files=files)
     id=response.text.split('"')
+    logger.warning(id[3])
     #print(id[3])
     # directorio_actual = os.getcwd()
     # ruta_imagen = directorio_actual+"\\"+"i_grafico"+numeroUsuario+".png"
