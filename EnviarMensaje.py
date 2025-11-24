@@ -55,9 +55,12 @@ def enviar_imagen(numeroUsuario):
         "id": id[3]
         }
     })
-    headers = {
+    headers2 = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+tokenApiWA
     }
-    response2 = requests.request("POST", url2, headers=headers, data=payload2)
+    logger.info(url2)
+    logger.info(payload2)
+    logger.warning(headers2)
+    response2 = requests.request("POST", url2, headers=headers2, data=payload2)
     logger.warning(response2.text)
