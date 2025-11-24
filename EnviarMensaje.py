@@ -7,6 +7,8 @@ def enviar_mensaje(payload):
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
+            tokenApiWA = tokenApiWA[:-1]
+            logger.info(tokenApiWA + " - to\nken")
             #print((tokenApiWA))
         finally:
             archivo.close()
@@ -27,6 +29,8 @@ def enviar_imagen(numeroUsuario):
     with open('tokenAPIWA.txt', 'r') as archivo:
         try:
             tokenApiWA = archivo.read()
+            tokenApiWA = tokenApiWA[:-1]
+            logger.info(tokenApiWA + " - to\nken")
         finally:
             archivo.close()
     headers = {
