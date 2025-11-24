@@ -3,6 +3,7 @@ import EnviarMensaje
 import logging
 
 def validar_mensaje(texto,numeroUsuario):
+    aux = False
     logger = logging.getLogger(__name__)
     logger.info("Entra funcion")
     if texto == "this is a text message":
@@ -20,6 +21,16 @@ def validar_mensaje(texto,numeroUsuario):
             "preview_url": False,
             "body": "Cual 'oli'\n*Madure*"
         })
+    elif "gasto" in texto or "Gasto" in texto:
+        Grafica.guardar_dato(texto,numeroUsuario)
+        aux = True
+    elif "Llenar" in texto or "llenar" in texto:
+        Grafica.mas_datos(numeroUsuario)
+        aux = True
+    elif texto == "graf":
+        Grafica.grafica(numeroUsuario)
+        EnviarMensaje.enviar_imagen(numeroUsuario)
+        aux = True
     else:
         recipient_type = "individual"
         typeAPIWA ="text"
@@ -37,6 +48,9 @@ def validar_mensaje(texto,numeroUsuario):
             "type": typeAPIWA,
             typeAPIWA: typeJSONAPIWA
         })
+        EnviarMensaje.enviar_mensaje(payload)
+    elif aux:
+        aux = False
     else:
         payload = json.dumps({
             "messaging_product": "whatsapp",
@@ -45,5 +59,5 @@ def validar_mensaje(texto,numeroUsuario):
             "type": typeAPIWA,
             typeAPIWA: typeJSONAPIWA
         })
-    EnviarMensaje.enviar_mensaje(payload)
+        EnviarMensaje.enviar_mensaje(payload)
     del numeroUsuario
