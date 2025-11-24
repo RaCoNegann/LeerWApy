@@ -22,12 +22,15 @@ def validar_mensaje(texto,numeroUsuario):
             "body": "Cual 'oli'\n*Madure*"
         })
     elif "gasto" in texto or "Gasto" in texto:
+        logger.info("gasto")
         Grafica.guardar_dato(texto,numeroUsuario)
         aux = True
     elif "Llenar" in texto or "llenar" in texto:
+        logger.info("llenar")
         Grafica.mas_datos(numeroUsuario)
         aux = True
     elif texto == "graf":
+        logger.info("grafica")
         Grafica.grafica(numeroUsuario)
         EnviarMensaje.enviar_imagen(numeroUsuario)
         aux = True
