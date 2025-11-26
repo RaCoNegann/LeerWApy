@@ -24,11 +24,11 @@ def validar_mensaje(texto,numeroUsuario):
         })
     elif "gasto" in texto or "Gasto" in texto:
         logger.info("gasto")
-        Grafica.guardar_dato(texto,numeroUsuario)
+        Grafica.guardar_dato(texto,numeroUsuario,False)
         aux = True
     elif "Llenar" in texto or "llenar" in texto:
-        logger.info("llenar")
-        Grafica.mas_datos(numeroUsuario)
+        print("llenar")
+        Grafica.guardar_dato(texto,numeroUsuario,True)
         aux = True
     elif texto == "graf":
         logger.info("grafica")

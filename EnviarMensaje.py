@@ -1,47 +1,32 @@
 import requests
-import logging
 import json
 import os
+import MensajeDebug as mensajeDebug
 
 def enviar_mensaje(payload):
-    logger = logging.getLogger(__name__)
     url = "https://graph.facebook.com/v22.0/845427305315318/messages"
-    with open('tokenAPIWA.txt', 'r') as archivo:
-        try:
-            tokenApiWA = archivo.read()
-            tokenApiWA = tokenApiWA[:-1]
-            logger.info(tokenApiWA + " - to\nken")
-            #print((tokenApiWA))
-        finally:
-            archivo.close()
+    tokenApiWA = obtenerToke()
     headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer '+tokenApiWA
     }
     response = requests.request("POST", url, headers=headers, data=payload)
     del tokenApiWA
-    logger.warning(response.text)
+    mensajeDebug.mensajeConsola("EnviarMensaje",response.text,1)
 
 def enviar_imagen(numeroUsuario):
-    logger = logging.getLogger(__name__)
     url = "https://graph.facebook.com/v22.0/845427305315318/media"
     payload = {'messaging_product': 'whatsapp'}
     files=[
     ('file',('i_grafico.png',open("i_grafico"+numeroUsuario+".png",'rb'),'image/png'))
     ]
-    with open('tokenAPIWA.txt', 'r') as archivo:
-        try:
-            tokenApiWA = archivo.read()
-            tokenApiWA = tokenApiWA[:-1]
-            logger.info(tokenApiWA + " - to\nken")
-        finally:
-            archivo.close()
+    tokenApiWA = obtenerToke()
     headers = {
     'Authorization': 'Bearer '+tokenApiWA
     }
     response = requests.request("POST", url, headers=headers, data=payload, files=files)
     id=response.text.split('"')
-    logger.warning(id[3])
+    mensajeDebug.mensajeConsola("EnviarMensaje",id[3],2)
     #print(id[3])
     # directorio_actual = os.getcwd()
     # ruta_imagen = directorio_actual+"\\"+"i_grafico"+numeroUsuario+".png"
@@ -61,8 +46,16 @@ def enviar_imagen(numeroUsuario):
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+tokenApiWA
     }
-    logger.info(url2)
-    logger.info(payload2)
-    logger.warning(headers2)
     response2 = requests.request("POST", url2, headers=headers2, data=payload2)
-    logger.warning(response2.text)
+    mensajeDebug.mensajeConsola("EnviarMensaje",response2.text,2)
+
+def obtenerToke():
+    with open('tokenAPIWA.txt', 'r') as archivoToken:
+        try:
+            tokenApiWA = archivoToken.read()
+            #if "\n" in tokenApiWA:
+            tokenApiWA = tokenApiWA.strip()
+            mensajeDebug.mensajeConsola("EnviarMensaje",tokenApiWA + " - to\nken",1)
+        finally:
+            archivoToken.close()
+    return tokenApiWA
